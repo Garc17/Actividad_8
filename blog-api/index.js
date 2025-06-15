@@ -1,17 +1,16 @@
+const http = require('node:http');
+const app = require('./src/app');
 require('dotenv').config();
-const express = require('express');
-const app = express();
 
-app.use(express.json());
+const server = http.createServer(app);
 
-const autoresRoutes = require('./src/routes/api/autores');
-const postsRoutes = require('./src/routes/api/posts');
-
-app.use('/api/autores', autoresRoutes);
-app.use('/api/posts', postsRoutes);
-
-// Servidor
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`✅ Servidor escuchando en http://localhost:${PORT}`);
+server.listen(PORT);
+
+server.on('listening', () => {
+    console.log(`Conexión establecida http://localhost:${PORT}`);
+});
+
+server.on('error', (error) => {
+    console.error('Fallo en la conexión', error);
 });

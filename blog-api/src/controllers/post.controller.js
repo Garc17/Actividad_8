@@ -1,10 +1,9 @@
-const db = require('../../config/db');
+const db = require('../config/db');
 
 exports.getPosts = (req, res) => {
     const sql = `
-        SELECT posts.*, autores.nombre AS autor_nombre, autores.email AS autor_email, autores.imagen AS autor_imagen
+        SELECT posts.*, autores.nombre, autores.email, autores.imagen
         FROM posts
-        LEFT JOIN autores ON posts.autor_id = autores.id
     `;
     db.query(sql, (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -42,7 +41,6 @@ exports.getPostsByAutor = (req, res) => {
         JOIN autores ON posts.autor_id = autores.id
         WHERE autor_id = ?
     `;
-
     db.query(sql, [autorId], (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json(results);

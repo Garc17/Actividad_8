@@ -1,4 +1,4 @@
-const db = require('../../config/db');
+const db = require('../config/db');
 
 exports.getAutores = (req, res) => {
     db.query('SELECT * FROM autores', (err, results) => {
