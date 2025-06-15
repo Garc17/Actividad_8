@@ -1,0 +1,33 @@
+### 🔹 Obtener todos los autores
+GET http://localhost:3000/api/autores
+
+
+### 🔹 Crear un nuevo autor
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Laura Vidal",
+  "email": "laura@correo.com",
+  "imagen": "laura.jpg"
+}
+
+
+### 🔹 Obtener todos los posts (con datos del autor)
+GET http://localhost:3000/api/posts
+
+
+### 🔹 Crear un nuevo post
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+
+{
+  "titulo": "Artículo nuevo",
+  "descripcion": "Este es un contenido de prueba.",
+  "categoria": "Noticias",
+  "autor_id": 1
+}
+
+
+### 🔹 Obtener todos los posts de un autor específico
+GET http://localhost:3000/api/posts/autor/1
